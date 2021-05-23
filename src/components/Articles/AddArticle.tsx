@@ -7,22 +7,33 @@ import Button from '@material-ui/core/Button';
 //change interface texts depending on language
 import IntlMessages from '../../util/IntlMessages';
 
-const AddArticle = ({ saveArticle , language}) => {
-  const [article, setArticle] = useState()
+type Props={
+  language : Language; 
+  saveArticle : Function; 
+} 
+const iniArticle = {
+  title : '',
+  body  : '',
+  id    : 0,
+  userId: 0
+}
 
-  const handleArticleData = e => {
+const AddArticle = ({ saveArticle , language}:Props) => {
+  const [article, setArticle] = useState<IArticle>(iniArticle)
+
+  const handleArticleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArticle({
       ...article,
       [e.target.id]: e.target.value,
     })
   }
-  const addNewArticle = e => {
+  const addNewArticle = (e: React.SyntheticEvent) => {
     e.preventDefault()
     saveArticle(article)
   }
 
   return (
-    <form onSubmit={addNewArticle} className="add-article">
+    <form onSubmit={() => addNewArticle} className="add-article">
       <input
         type="text"
         id="title"

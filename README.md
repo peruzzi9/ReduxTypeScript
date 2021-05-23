@@ -1,3 +1,44 @@
+# ==== 20/05/2021 ===
+# first steps to Migrate a React App to TypeScript
+1- npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+2- npx tsc --init
+3- convert and make changes needed to make ShowArticles/AddArticle components Typescript
+
+NOTES :
+A- A question mark after an identifier 
+means that the parameter is optional. For example:
+
+function stringify123(callback?: (num: number) => string) {
+  if (callback === undefined) {
+    callback = String;
+  }
+  return callback(123);
+}
+
+B-Optional vs. default value vs. undefined|T  
+The following three parameter declarations are quite similar:
+
+Parameter is optional: x?: number
+Parameter has a default value: x = 456
+Parameter has a union type: x: undefined | number
+
+C-Rest parameters  
+We can also use rest parameters in TypeScript parameter definitions. Their static types must be Arrays:
+
+function joinNumbers(...nums: number[]): string {
+  return nums.join('-');
+}
+assert.equal(
+  joinNumbers(1, 2, 3),
+  '1-2-3');
+
+
+  https://2ality.com/2018/04/type-notation-typescript.html
+----------------
+
+https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
+# ==== TYPESCRIPT START FROM HERE ======
+
 # === 16/05/2021  ===
 # Implement useSelector/useDispatch
 - replace connect() mapStateToProps and mapDispatchToProps with

@@ -42,7 +42,7 @@ const Articles = () => {
         <IntlMessages id="article.allarticletitle" />
     </div>
     {articles.map(article => (
-      <Article key={article.id} article={article} language={language} />
+      <Article key={article.id} Article={article} language={language} />
 
     ))}
     <Button variant="contained" color="primary" onClick={clearArticles} ><IntlMessages id="article.clearall" /></Button>
