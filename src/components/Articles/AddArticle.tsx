@@ -11,15 +11,10 @@ type Props={
   language : Language; 
   saveArticle : Function; 
 } 
-const iniArticle = {
-  title : '',
-  body  : '',
-  id    : 0,
-  userId: 0
-}
+
 
 const AddArticle = ({ saveArticle , language}:Props) => {
-  const [article, setArticle] = useState<IArticle>(iniArticle)
+  const [article, setArticle] = useState<IArticle>({} as IArticle)
 
   const handleArticleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArticle({
