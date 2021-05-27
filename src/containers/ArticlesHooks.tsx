@@ -17,18 +17,17 @@ import { clearAllArticles, getAllArticles } from "../store/Articles/articleActio
 
 //change interface texts depending on language
 import IntlMessages from '../util/IntlMessages';
-
  
 const Articles = () => {
 
-    const  language = useSelector(state =>state.languageDirection.locale)  
-    const  articles = useSelector(state =>state.article.articles)
-    const  loading  = useSelector(state =>state.article.loading)
-    const  error    = useSelector(state =>state.article.error) 
+    const  language:Language = useSelector((state :RootState ) =>state.languageDirection.locale)  
+    const  articles:IArticle[] = useSelector((state :RootState ) =>state.article.articles)
+    const  loading :Boolean  = useSelector((state :RootState ) =>state.article.loading)
+    const  error   :String = useSelector((state :RootState ) =>state.article.error) 
 
     const dispatch = useDispatch()
     
-    const saveArticle= article =>dispatch({ type: actionTypes.ADD_ARTICLE, articleData: article })
+    const saveArticle= (article:IArticle) =>dispatch({ type: actionTypes.ADD_ARTICLE, articleData: article })
     const clearArticles = ()=> dispatch(clearAllArticles());
 
   useEffect(() => dispatch(getAllArticles()), [])

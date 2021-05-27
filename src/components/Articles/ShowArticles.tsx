@@ -4,10 +4,11 @@ import React from "react"
  
 
 type Props ={
-  Article:IArticle
+  Article:IArticle,
+  language:Language
 }
 
-const article = ( {Article} : Props  ):JSX.Element => (
+const article = ( {Article,language} : Props  ):JSX.Element => (
   <div className="article">
     <h1>{Article.title}</h1>
     <p>{Article.body}</p>

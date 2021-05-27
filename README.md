@@ -1,3 +1,10 @@
+# ==== 27/05/2021 ===
+# ArticlesHooks page with TypeScript
+- change needed with useSelector
+- define RootState general types for reduxStore in reduxStore.d.ts
+- modify event type for submit form
+
+
 # ==== 20/05/2021 ===
 # first steps to Migrate a React App to TypeScript
 1- npm install --save typescript @types/node @types/react @types/react-dom @types/jest

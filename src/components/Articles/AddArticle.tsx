@@ -27,13 +27,13 @@ const AddArticle = ({ saveArticle , language}:Props) => {
       [e.target.id]: e.target.value,
     })
   }
-  const addNewArticle = (e: React.SyntheticEvent) => {
+  const addNewArticle = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     saveArticle(article)
   }
 
   return (
-    <form onSubmit={() => addNewArticle} className="add-article">
+    <form onSubmit={addNewArticle} className="add-article">
       <input
         type="text"
         id="title"
