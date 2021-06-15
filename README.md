@@ -1,3 +1,8 @@
+# ==== 15/06/2021 2===
+# change react front-end port from 3000 to 4000
+
+- use env file to set port  .
+
 # ==== 15/06/2021 ===
 # change react front-end port from 3000 to 4000
 
