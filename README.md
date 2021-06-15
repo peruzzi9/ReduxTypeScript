@@ -1,3 +1,8 @@
+# ==== 15/06/2021 ===
+# change react front-end port from 3000 to 4000
+
+- update package.json script with new port .
+
 # ==== 27/05/2021 ===
 # ArticlesHooks page with TypeScript
 - change needed with useSelector
