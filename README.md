@@ -1,3 +1,8 @@
+# ==== 15/06/2021 3===
+# Add login page and add nest server address to env  
+
+- update login page with api to make real login and store token in localstorage  .
+
 # ==== 15/06/2021 2===
 # change react front-end port from 3000 to 4000
 
