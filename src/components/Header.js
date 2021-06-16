@@ -20,9 +20,8 @@ import IntlMessages from '../util/IntlMessages';
 
 import '../styles/main.css';
 
-const Header = () => {
-  //this is come after mapStateToProps
-
+const Header = ({isUserLoggedIn}) => { 
+ console.log("Header isUserLoggedIn=====",isUserLoggedIn)
   return (
     <div>
       <div>
@@ -78,9 +77,14 @@ const Header = () => {
         <Button variant="contained" disabled>
           <IntlMessages id="header.contactus" />
         </Button>
+        {!isUserLoggedIn?
         <Button variant="contained"   href="/login">
           <IntlMessages id="header.login" />
         </Button>
+        :
+        <Button variant="contained"   href="/logout">
+          <IntlMessages id="header.logout" />
+        </Button>}
       </div>
       <div>
         {/* component for switching theme with redux store */}

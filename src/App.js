@@ -8,7 +8,7 @@ import {
 // sub router
 import MyRoutes from "./routes"
 import MyPrivateRoutes from "./routesPrivate"
-
+import  { useEffect,useState } from "react"
 
 import logo from './logo.svg';
 import Articles from "./containers/Articles"
@@ -37,12 +37,27 @@ import AppLocale from './lngProvider';
 // for  redux state and actions / store 
 import { connect } from 'react-redux';
 
+import isAuthenticated from './util/isAuthenticated'
+import Logout from "./containers/Logout";
+
 const App = ({ Settings }) => {
   //this is come after mapStateToProps
 
   // check is User LoggedIn 
-  // change it to true for testing logged in user
-  const isUserLoggedIn = false;
+  // change it to true for testing logged in user 
+  let [isUserLoggedIn,setLogedin]=useState(false) 
+
+  
+  useEffect( () => {
+     
+     async function checkAuthentication() {
+        let isLogedin = await isAuthenticated(); 
+        console.log("App useEffect checkAuthentication===",isLogedin)
+        setLogedin(isLogedin);
+     }
+     checkAuthentication(); 
+     
+  }, [])
 
   console.log("App settings from  store ===", Settings)
   let { themeColor } = { themeColor: Settings.themeColor };
@@ -101,7 +116,7 @@ const App = ({ Settings }) => {
           <Router>
             <div>
               {/* Header should be inside Router to make Link works */}
-              <Header />
+              <Header isUserLoggedIn={isUserLoggedIn} />
             </div>
             <header  >
               <img src={logo} className="App-logo" alt="logo" />
@@ -131,6 +146,7 @@ const App = ({ Settings }) => {
                 <Route path="/contactus" component={Articles} />
                 <Route path="/articleshooks" component={ArticlesHooks} />
                 <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
                 <Route path="/news" component={News} />
                 <Route path="/privatepage"
                   render={() => {
@@ -182,7 +198,10 @@ if user is logged in it will be route to nested private route and there it will 
 if user is not logged in it will be redirected to login page
 */
 const RestrictedRoute = ({component: Component, isUserLoggedIn, ...rest}) =>
-    <Route 
+{
+  //console.log("RestrictedRoute isUserLoggedIn====",isUserLoggedIn)
+  alert("RestrictedRoute / "+isUserLoggedIn)
+return (<Route 
      {...rest}
         render={props =>
           isUserLoggedIn
@@ -193,7 +212,9 @@ const RestrictedRoute = ({component: Component, isUserLoggedIn, ...rest}) =>
                         state: {from: props.location}
                     }}
                 />}
-    />;
+    />)
+  }
+    ;
 
 const mapStateToProps = statefromstore => {
   console.log("App=== Global State Store ======", statefromstore)
@@ -208,4 +229,9 @@ const mapStateToProps = statefromstore => {
   //return themeSettings
 };
 
+
+/* 
+ If you want the App component to re-render when the route change,
+ you can use the withRouter HOC to inject route props
+*/
 export default connect(mapStateToProps)(App)

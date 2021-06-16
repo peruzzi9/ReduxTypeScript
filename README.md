@@ -1,3 +1,14 @@
+# ==== 16/06/2021 1===
+# check current login state 
+
+- define isAuthenticated function for connecting with server and check current client token validation .
+- use it in login page and if token is exist and valid (server check) then redirect to homepage.
+- use isAuthenticated function for private Routes login check .
+- add logout component and logout button
+
+- note : routing by browser url will not give right routing to private routes ... it will redirect to login page which will redirect to homepage ... this because of app initial state (false) of isUserLoggedIn .
+this could be fixed by storing state using redux .
+
 # ==== 15/06/2021 3===
 # Add login page and add nest server address to env  
 

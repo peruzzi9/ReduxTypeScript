@@ -1,16 +1,29 @@
 import { Redirect } from 'react-router-dom'
 
-import React, { useState } from "react"
+import React, { useEffect,useState } from "react"
 // for  redux state and actions / store
 import { connect } from "react-redux"
 //change interface texts depending on language
 import IntlMessages from '../util/IntlMessages';
  
+import isAuthenticated from '../util/isAuthenticated'
 
 const Login = ({ language }) => {
-  
-//  loggedin: isAuthenticated()
+   
  const [loggedin,setLogedin]=useState(false) 
+
+ useEffect( () => {
+    
+    
+    async function checkAuthentication() {
+       let isLogedin = await isAuthenticated(); 
+       console.log("Login useEffect checkAuthentication===",isLogedin)
+       setLogedin(isLogedin);
+    }
+
+    checkAuthentication(); 
+    
+ }, [])
 
  const submit=(e)=>{
     e.preventDefault()
