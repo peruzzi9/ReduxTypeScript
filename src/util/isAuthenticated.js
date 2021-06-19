@@ -4,7 +4,8 @@ export default  function isAuthenticated(){
    return new Promise((resolve, reject)=>{
 
       const accessToken= localStorage.getItem('token') ;
-      axios.get(process.env.REACT_APP_SERVER+`/auth/whoami`,{
+      //axios.get(process.env.REACT_APP_SERVER+`/auth/whoami`,{
+      axios.get(`/auth/whoami`,{
        headers: {
          'Authorization': `Bearer ${accessToken}`
        }

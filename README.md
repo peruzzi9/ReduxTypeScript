@@ -1,3 +1,10 @@
+
+# ==== 17/06/2021 1===
+# Run frontend and backend on same port
+-  add to package.json 
+- ,"proxy": "http://localhost:3000"
+- now we can request API by relative path , for EX: we use get('/auth/whoami') instead of full path .
+
 # ==== 16/06/2021 1===
 # check current login state 
 
