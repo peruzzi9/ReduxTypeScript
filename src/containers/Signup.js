@@ -1,49 +1,49 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logInStart } from "../store/Auth/authAction";
-// MaterialUi
-import Button from "@material-ui/core/Button";
+import { registerStart } from "../store/Auth/authAction";
 
-const LogIn = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+const Register = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
 
-  // for call redux action signin
   const dispatch = useDispatch();
   // for Auth status
   const auth = useSelector((state) => state.auth);
 
+  console.log("Register  =======",auth)
   //for go back to latest visited link after successfull login
   let history = useHistory();
+
+  // move to home page if user is already logged in or after successful registration
+  if (auth.currentUser) history.push("/");
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(logInStart(credentials));
+    dispatch(registerStart(credentials));
   };
 
-  if (history.location.state)
-    console.log(
-      `%chistory come from ====${history.location.state.from.pathname}`,
-      "color:#fff;background:#08c;padding:5px;border-radius:8px"
-    );
-
-  //for go back to latest visited link after successfull login
-  if (auth.currentUser)
-    if (history.location.state) {
-      console.log(
-        `%chistory goBack====${history.location.state.from.pathname}`,
-        "color:#fff;background:#08c;padding:5px;border-radius:8px"
-      );
-      history.push(history.location.state.from.pathname);
-    } else history.push("/");
-
   return (
-    <div>
+    <div> 
       <form onSubmit={handleSubmit}>
-        <h2>LOGIN</h2>
+        <h2>REGISTER</h2>
+        <div>
+          <label>
+            Full Name
+            <input
+              name="username"
+              type="text"
+              value={credentials.username}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
         <div>
           <label>
             Email
@@ -52,7 +52,6 @@ const LogIn = () => {
               type="text"
               value={credentials.email}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -64,24 +63,18 @@ const LogIn = () => {
               type="password"
               value={credentials.password}
               onChange={handleChange}
-              pattern=".{5,20}"
-              required
             />
           </label>
         </div>
         <div>
-          <button type="submit">Log In</button>
+          <button type="submit">Register & Log In</button>
         </div>
-        <Button variant="contained" href="/register">
-          Register New User
-        </Button>
       </form>
-
-      <div>
+      {<div>
         <h1>{auth.error}</h1>
-      </div>
+      </div>}
     </div>
   );
 };
 
-export default LogIn;
+export default Register;

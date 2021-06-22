@@ -1,4 +1,18 @@
 
+# ==== 21/06/2021 1===
+# Login , Signup and logout with Redux / saga 
+-  https://praz.dev/posts/react-auth-redux-saga/
+-  create Auth actionstypes , authActions and authReducer
+-  add to combineReducers.js
+-  create Auth unit inside sage with async functions
+-  implement new login/logout/back to latest private page after login ... all depending on Auth management state by Redux .
+-  implement new signup then login  depending on Auth management state by Redux .
+- display error message on login/registration failed. 
+- give a style to console.log message in browser console .
+- remove the use of old isUserLoggedIn method ... we are now using redux and no need for function to check with server user login state every time  .
+- 
+
+
 # ==== 17/06/2021 1===
 # Run frontend and backend on same port
 -  add to package.json 

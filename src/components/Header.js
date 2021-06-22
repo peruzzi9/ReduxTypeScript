@@ -17,11 +17,16 @@ import Button from '@material-ui/core/Button';
 
 //change interface texts depending on language
 import IntlMessages from '../util/IntlMessages';
+// for  redux state and actions / store
+import {useSelector} from 'react-redux'
 
 import '../styles/main.css';
 
-const Header = ({isUserLoggedIn}) => { 
- console.log("Header isUserLoggedIn=====",isUserLoggedIn)
+const Header = () => { 
+
+  // for Auth status
+  const auth = useSelector((state) => state.auth);
+ 
   return (
     <div>
       <div>
@@ -76,15 +81,16 @@ const Header = ({isUserLoggedIn}) => {
 
         <Button variant="contained" disabled>
           <IntlMessages id="header.contactus" />
-        </Button>
-        {!isUserLoggedIn?
-        <Button variant="contained"   href="/login">
-          <IntlMessages id="header.login" />
-        </Button>
-        :
-        <Button variant="contained"   href="/logout">
-          <IntlMessages id="header.logout" />
-        </Button>}
+        </Button> 
+        {auth.currentUser ? 
+              <Button variant="contained"   href="/logout">
+               <IntlMessages id="header.logout" />
+              </Button>
+              : 
+              <Button variant="contained"   href="/login">
+               <IntlMessages id="header.login" />
+              </Button>
+            }
       </div>
       <div>
         {/* component for switching theme with redux store */}

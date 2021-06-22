@@ -4,6 +4,7 @@ import articleReducer from "./Articles/articleReducer"
 import newsReducer from "./News/newsReducer"
 import themeReducer from "./Theme/themeReducer"
 import languageDirectionReducer from "./LanguageDirection/languageDirectionReducer"
+import authReducer from './Auth/authReducer';
 
 export default combineReducers(
     {
@@ -18,5 +19,6 @@ export default combineReducers(
         article:articleReducer,
         news:newsReducer,
         theme:themeReducer,
-        languageDirection:languageDirectionReducer
+        languageDirection:languageDirectionReducer,
+        auth:authReducer
     });
