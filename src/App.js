@@ -53,7 +53,7 @@ const App = ({ Settings }) => {
   let { themeColor } = { themeColor: Settings.themeColor };
   let language = Settings.language;
   let isDirectionRTL = Settings.isDirectionRTL;
-  document.title = language.locale == "ar" ? "مثال بالريدوكس" : "Redux Example";
+  document.title = language.locale === "ar" ? "مثال بالريدوكس" : "Redux Example";
   //applyTheme= createMuiTheme(alaaTheme);
   /* if (isDarkTheme) {
     applyTheme = createMuiTheme(darkTheme)

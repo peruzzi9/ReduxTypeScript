@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { Link, withRouter } from "react-router-dom";
 /* if you want that your component receive RouterProps(history,location,history.push  ....),
  but don't want to wrap it in <Route component={Some}>.
