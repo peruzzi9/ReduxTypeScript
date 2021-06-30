@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Link ,useHistory } from "react-router-dom";
+import isAuthenticated from '../util/isAuthenticated'
 
 // MaterialUi
 import Button from '@material-ui/core/Button';
@@ -21,6 +22,11 @@ const Home = ({ language }) => {
     history.goBack();
   };
 
+  let isAuthenticat=async()=>{ 
+    let result=await isAuthenticated();
+     alert(result)
+  }
+
   return (
     <div>
       <div>
@@ -33,6 +39,11 @@ const Home = ({ language }) => {
             <IntlMessages id="header.homepage" />
           </Button>
         </Link>
+        <div>
+         <button type="button" onClick={isAuthenticat}>
+           Check Refresh token httponly isAuthenticated
+         </button> 
+        </div>
         <div>
          <button type="button" onClick={back}>
            back to last visited page using history

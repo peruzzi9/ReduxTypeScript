@@ -40,3 +40,8 @@ export const logOutSuccess = () => {
   type: actionTypes.LOG_OUT_SUCCESS,
 }
 };
+export const logOutFailed = () => {
+  return {
+  type: actionTypes.LOG_OUT_FAILED,
+}
+};

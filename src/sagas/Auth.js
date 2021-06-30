@@ -7,6 +7,7 @@ import {
   registerFailure,
   registerSuccess,
   logOutSuccess,
+  logOutFailed
 } from "../store/Auth/authAction";
 import * as actionTypes from "../store/actionTypes";
 
@@ -50,6 +51,22 @@ const register = async (email, username, password) => {
    }
 };
 
+const logOut = async () => {
+  try {
+    const response = await axios.post("/auth/logout");
+    console.log("axios logOut response====", response);
+    if (response.data.code == 200) { 
+        await removeTokenFromLocalstorage();
+      return true;
+    } else 
+      return false;
+  } catch (error) {
+    // bad request 400 or 500 server off
+    console.log("axios logIn response error====", error);
+    return false;
+  }
+};
+
 export function* logInWithCredentials({ payload: { email, password } }) {
   try {
     console.log("logInWithCredentials ====", email, password);
@@ -65,8 +82,11 @@ export function* logInWithCredentials({ payload: { email, password } }) {
 }
 
 export function* logOutCleanStorage() {
-  yield removeTokenFromLocalstorage();
+  let result=yield logOut();
+  if (result)
   yield put(logOutSuccess()); // send to logout action ... defined in authaction
+  else
+  yield put(logOutFailed());
   // or we can call
   // yield put({ type: actionTypes.LOG_OUT_SUCCESS}) // send this action directly to authreducer
 }

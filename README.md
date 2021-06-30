@@ -1,3 +1,8 @@
+# ==== 30/06/2021 1===
+# update logout refreshToken httponly with Redux / saga 
+- logout by call guarded logout API with httponly refresh token
+- test whoami API with refresh token httponly on login/logout
+- 
 
 # ==== 21/06/2021 1===
 # Login , Signup and logout with Redux / saga 

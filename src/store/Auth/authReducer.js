@@ -24,6 +24,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         currentUser: null,
         error: null,
       };
+      // on LOG_OUT_FAILED  do nothing
     default:
       return state;
   }

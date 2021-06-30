@@ -5,11 +5,11 @@ export default  function isAuthenticated(){
 
       const accessToken= localStorage.getItem('token') ;
       //axios.get(process.env.REACT_APP_SERVER+`/auth/whoami`,{
-      axios.get(`/auth/whoami`,{
+      axios.get(`/auth/whoami`/* ,{
        headers: {
          'Authorization': `Bearer ${accessToken}`
        }
-     })
+     } */)
       .then(res => {
         console.log("isAuthenticated====",res.data)
         console.log("isAuthenticated====",res.status)
